@@ -9,7 +9,7 @@ CHOICES = (
 class Quote(models.Model):
     text = models.TextField(max_length=3000, verbose_name='text')
     author = models.CharField(max_length=50, null=False, blank=False, verbose_name='author')
-    email = models.EmailField(max_length=254)
+    email = models.EmailField(max_length=254, blank=False)
     rating = models.IntegerField(default=0)
     status = models.CharField(max_length=50, null=False, blank=False, verbose_name='status', default=CHOICES[0][0],
                               choices=CHOICES)
@@ -22,3 +22,4 @@ class Quote(models.Model):
         db_table = 'quotes'
         verbose_name = 'Quote'
         verbose_name_plural = 'Quotes'
+        permissions = [('moderator', 'модератор')]
